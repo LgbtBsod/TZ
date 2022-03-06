@@ -28,38 +28,27 @@ week_day = {
 
 def amount_day_years(year)->int:
     count = 0
-    for years in range(1901,year+1):
-        if (years / 4) == round(years/4):
-            mounths['2']['day'] = 29
-            for why in list(mounths.keys()):
-                count += mounths[why]['day']
+    for years in range(1900,year):
+        if (years / 4) == round(years/4) and years != 1900:
+           count += 366
         else:
-            mounths['2']['day'] = 28
-            for why in list(mounths.keys()):
-                count += mounths[why]['day']
+            count += 365
     return count
     
     
 def get_days(day,mounth,year)->int:
     count = 0
-    if (year/4) == round(year/4):
-      
-        if mounth >1:
-            for x in range(1 ,mounth):
-                y = mounths[str(x)]['day']
-                count += y
-            count += day -1
-        else:
-            count += day
+    if mounth >1:
+        for x in range(1 ,mounth):
+            y = mounths[str(x)]['day']
+            count += y
+        count += day 
     else:
+        count += day
         
-        if mounth >1:
-            for x in range(1 ,mounth):
-                y = mounths[str(x)]['day']
-                count += y
-            count += day
-        else:
-            count += day       
+    if (year/4) == round(year/4):
+        count += 1
+          
     count = count%7
     return count
     
@@ -88,5 +77,5 @@ def getDayInfo(date:str):
         
     print(day_name,week_num,'week', mounth_name,year)
 
-getDayInfo('15.12.2021')
+getDayInfo('29.8.1915')
 
