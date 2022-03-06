@@ -39,15 +39,18 @@ def amount_day_years(year)->int:
 def get_days(day,mounth,year)->int:
     count = 0
     if mounth >1:
+        if mounth >2 and (year/4) == round(year/4) and year !=1900:
+            count += 1
+        else:
+            count = 0
+            
         for x in range(1 ,mounth):
             y = mounths[str(x)]['day']
             count += y
         count += day 
     else:
         count += day
-        
-    if (year/4) == round(year/4):
-        count += 1
+  
           
     count = count%7
     return count
@@ -77,5 +80,5 @@ def getDayInfo(date:str):
         
     print(day_name,week_num,'week', mounth_name,year)
 
-getDayInfo('29.8.1915')
+getDayInfo('16.2.1905')
 
